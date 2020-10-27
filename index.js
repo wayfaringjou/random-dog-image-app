@@ -5,8 +5,10 @@ function getDogImages(imageNumber) {
   const options = { method: 'GET' };
   fetch(`https://dog.ceo/api/breeds/image/random/${imageNumber}`, options)
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => console.log(data))
+    .catch((error) => alert('An error has ocurred, please try later.'));
 }
+
 // Listen to form submission and pass input value to fetch request
 function submitClickedHandler() {
   $('main').on('click', '.js-image-submit', function (e) {
