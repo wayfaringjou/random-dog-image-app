@@ -3,10 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" type="text/css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
     <title>Random Dog Image</title>
   </head>
   <body>
-    
+    <header class="centered"><h1>Get a random dog image.</h1></header>
+    <main class="centered">
+      <section id="image-retreive-form">
+        <form action="" class="js-image-form">
+          <fieldset>
+            <legend>Retrieve a number of random dog images.</legend>
+            <h2>Select how many pictures to fetch.</h2>
+            <input
+              required
+              type="number"
+              name=""
+              id="image-number"
+              value="3"
+              min="1"
+              max="50"
+            />
+            <button type="submit" class="js-image-submit">Fetch</button>
+          </fieldset>
+        </form>
+      </section>
+    </main>
     <script src="./index.js"></script>
   </body>
 </html>

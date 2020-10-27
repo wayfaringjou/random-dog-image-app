@@ -1,27 +1,32 @@
 'use-strict';
 
-/* Create an app that lets users choose to display between 1 and 50 random dog images,
-then prints the results to the console. */
+// Fetch request to dogAPI
+function getDogImages(imageNumber) {
+  const options = { method: 'GET' };
+  fetch(`https://dog.ceo/api/breeds/image/random/${imageNumber}`, options)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}
+// Listen to form submission and pass input value to fetch request
+function submitClickedHandler() {
+  $('main').on('click', '.js-image-submit', function (e) {
+    e.preventDefault();
+    // Math.trunc is used to handle inputs with periods entered by keyboard
+    let imageNumber = Math.trunc($(this).siblings('#image-number').val());
+    // If lower than 1 or higher than 50 is entered by keyboard, reset to min and max
+    if (imageNumber <= 0) {
+      imageNumber = 1;
+      $(this).siblings('#image-number').val(imageNumber);
+    } else if (imageNumber > 50) {
+      imageNumber = 50;
+      $(this).siblings('#image-number').val(imageNumber);
+    }
+    getDogImages(imageNumber);
+  });
+}
 
-/* The app should feature a form with a required input where users indicate the number of images to
-retrieve, and the input should default to 3. */
+function dogImageAppHandler() {
+  submitClickedHandler();
+}
 
-/* Use the endpoint described in the "DISPLAY MULTIPLE RANDOM IMAGES FROM ALL DOGS COLLECTION"
-section of this page of the DogAPI docs. */
-
-/* Building on the previous app, create an app that lets users choose to display between 1 and 50
-random dog images, then loads the images in the DOM. This app should adhere to all of the
-requirements from the first one, in addition to displaying the images in the DOM. */
-
-/* Create an app that loads a single random image for a specific breed, based on a user input.
-This app should account for the happy case when the breed is found, as well as the unhappy
-case when it is not. Use the endpoint described in the "RANDOM IMAGE FROM A BREED COLLECTION"
-section of this page of the DogAPI docs. Note that the API will return an HTTP status code
-of 404 along with a JSON object with info about the error if a request is made for a breed
-that can't be found. */
-
-// handlers
-
-// renderers
-
-// generators
+$(dogImageAppHandler);
