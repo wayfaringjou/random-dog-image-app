@@ -21,18 +21,16 @@
     <header class="centered"><h1>Get a random dog image.</h1></header>
     <main class="centered">
       <section id="image-retreive-form">
-        <form action="" class="js-image-form">
+        <form action="" class="js-image-breed-form">
           <fieldset>
-            <legend>Retrieve a number of random dog images.</legend>
-            <h2>Select how many pictures to fetch.</h2>
+            <legend>Retrieve random dog image of a specific breed.</legend>
+            <h2>Input a dog breed.</h2>
             <input
-              required
-              type="number"
+              type="text"
               name=""
-              id="image-number"
-              value="3"
-              min="1"
-              max="50"
+              id="dog-breed"
+              placeholder="i.e. hound"
+              required
             />
             <button type="submit" class="js-image-submit">Fetch</button>
           </fieldset>

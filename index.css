@@ -1,5 +1,5 @@
 body {
-  font-family: 'Liberation Sans', 'sans-serif';
+  font-family: "Liberation Sans", "sans-serif";
 }
 
 img {
@@ -23,4 +23,13 @@ li {
 .centered {
   max-width: 960px;
   margin: 16px auto;
+}
+
+.breed-img {
+  max-width: 75%;
+  margin: 16px;
+}
+
+#image-display {
+  text-align: center;
 }

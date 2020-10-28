@@ -1,51 +1,40 @@
+/* eslint-env jquery */
+
 'use-strict';
 
-function generateImageListItem(item) {
+// Generate Image
+function generateImage(imgSrc) {
   return `
-  <li>
-  <img src="${item}" />
-  </li>
-  `;
-}
-// Use a map function to generate list items
-function generateImageList(data) {
-  const imageList = data.message.map((item) => generateImageListItem(item));
-  return `
-  <ul>
-    ${imageList.join('')}
-  </ul>
+  <img src="${imgSrc}" class="breed-img"/>
   `;
 }
 // Render image list inside #image-display section
-function renderImages(data) {
-  $('main').find('#image-display').html(generateImageList(data));
+function renderBreedImage(imgSrc) {
+  $('main').find('#image-display').html(generateImage(imgSrc));
 }
 
 // Fetch request to dogAPI
-function getDogImages(imageNumber) {
+function getDogImagesByBreed(breed) {
   const options = { method: 'GET' };
-  fetch(`https://dog.ceo/api/breeds/image/random/${imageNumber}`, options)
+  fetch(`https://dog.ceo/api/breed/${breed}/images/random`, options)
     .then((response) => response.json())
-    // Call renderImage function with response data
-    .then((data) => renderImages(data))
-    .catch((error) => alert('An error has ocurred, please try later.'));
+    // Call renderBreedImage function with response data
+    .then((data) => {
+      if (data.status === 'error') {
+        alert(data.message);
+        return renderBreedImage(`https://http.cat/${data.code}`);
+      }
+      return renderBreedImage(data.message);
+    })
+    .catch((error) => alert('An error has ocurred, please try again later.'));
 }
 
 // Listen to form submission and pass input value to fetch request
 function submitClickedHandler() {
-  $('main').on('click', '.js-image-submit', function (e) {
+  $('main').on('submit', '.js-image-breed-form', function (e) {
     e.preventDefault();
-    // Math.trunc is used to handle inputs with periods entered by keyboard
-    let imageNumber = Math.trunc($(this).siblings('#image-number').val());
-    // If lower than 1 or higher than 50 is entered by keyboard, reset to min and max
-    if (imageNumber <= 0) {
-      imageNumber = 1;
-      $(this).siblings('#image-number').val(imageNumber);
-    } else if (imageNumber > 50) {
-      imageNumber = 50;
-      $(this).siblings('#image-number').val(imageNumber);
-    }
-    getDogImages(imageNumber);
+    const dogBreed = $(this).find('#dog-breed').val();
+    getDogImagesByBreed(dogBreed);
   });
 }
 
