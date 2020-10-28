@@ -1,5 +1,3 @@
-/* eslint-env jquery */
-
 'use-strict';
 
 // Generate Image
