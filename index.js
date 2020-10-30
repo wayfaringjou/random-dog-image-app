@@ -51,7 +51,7 @@ function getDogImagesByBreed(breed) {
 function submitClickedHandler() {
   $('main').on('submit', '.js-image-breed-form', function (e) {
     e.preventDefault();
-    const dogBreed = $(this).find('#dog-breed').val();
+    const dogBreed = $(this).find('#dog-breed').val().toLowerCase();
     getDogImagesByBreed(dogBreed);
   });
 }
