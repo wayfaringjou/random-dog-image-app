@@ -23,7 +23,7 @@ function generateImageList(data) {
   if (breedArr.length > 2) {
     headerMsg = `${breedArr[0]}, ${breedArr[1]}</span>, and more`;
   } else if (breedArr.length > 1) {
-    headerMsg = `${breedArr[0]} and ${breedArr[1]}</span>`;
+    headerMsg = `${breedArr[0]}</span> and <span class="capitalize">${breedArr[1]}</span>`;
   } else {
     headerMsg = `${breedArr[0]}</span>`;
   }
