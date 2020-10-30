@@ -24,3 +24,7 @@ li {
   max-width: 960px;
   margin: 16px auto;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}
