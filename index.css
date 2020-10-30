@@ -33,3 +33,7 @@ li {
 #image-display {
   text-align: center;
 }
+
+.capitalize {
+  text-transform: capitalize;
+}
